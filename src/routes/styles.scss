@@ -1,0 +1,141 @@
+$breakpoint-desktop: 992px;
+$breakpoint-tablet: 600px;
+
+$color-paperwhite: #e0e2dc;
+$color-paperblack: #0e0e10;
+
+$color-fontwhite: #cbd5e0;
+$color-fontblack: #000000;
+
+$color-oldbook: #cc9966;
+
+$color-six: #171923;
+
+$padding-x: 0 1.5rem;
+
+body {
+  background-color: $color-six;
+  min-height: 100vh;
+  min-height: var(--doc-height);
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    min-height: 100vh;
+  }
+}
+
+header {
+  border-bottom: solid black 1px;
+  overflow-x: auto;
+
+  a,
+  span {
+    font-family: serif;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullbar {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  background-color: $color-oldbook;
+}
+
+.bookwrap {
+  flex: 1;
+  overflow-x: auto;
+  display: flex;
+  position: relative;
+
+  > div {
+    position: relative;
+    min-width: var(--bookpage-width);
+
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      writing-mode: vertical-rl;
+      white-space: pre-wrap;
+      border-style: none solid;
+      border-width: 1px;
+      z-index: 1;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.黒字白紙 {
+  .bookwrap {
+    > div {
+      > div {
+        background-color: $color-paperwhite;
+        color: $color-fontblack;
+        border-color: $color-fontblack;
+      }
+    }
+  }
+}
+
+.白字黒紙 {
+  .bookwrap {
+    > div {
+      > div {
+        background-color: $color-paperblack;
+        color: $color-fontwhite;
+        border-color: $color-fontwhite;
+      }
+    }
+  }
+}
+
+.booknavbtn {
+  flex: 1 0 3rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: $color-fontwhite;
+  position: sticky;
+  z-index: 2;
+  font-size: 1rem;
+  border: none;
+
+  &:first-child {
+    left: 0;
+  }
+
+  &:last-child {
+    right: 0;
+  }
+}
+
+.booknav {
+  border-top: solid black 1px;
+
+  input[type="range"] {
+    width: 100%;
+    transform: rotate(180deg);
+    margin: 0;
+  }
+}
